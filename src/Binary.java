@@ -5,7 +5,5 @@ public abstract class Binary extends Sexpr {
     Sexpr left;
     Sexpr right;
 
-    public String toString() {
-        return "";
-    }
+    abstract public String toString();
 }

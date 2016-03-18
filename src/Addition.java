@@ -3,6 +3,7 @@
  */
 public class Addition extends Binary {
 
+
     public Addition(Sexpr _left, Sexpr _right) {
         this.left = _left;
         this.right = _right;
@@ -18,4 +19,11 @@ public class Addition extends Binary {
     Sexpr eval() {
         return this;
     }
+
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }
+

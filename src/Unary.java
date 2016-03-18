@@ -4,9 +4,7 @@
 public abstract class Unary extends Sexpr {
     Sexpr arg;
 
-    public String toString() {
-        return "";
-    }
+    abstract public String toString();
 
     int priority() {
         return 0;

@@ -11,4 +11,9 @@ public class Assignment extends Binary {
     Sexpr eval() {
         return null;
     }
+
+    @Override
+    public String toString() {
+        return null;
+    }
 }
