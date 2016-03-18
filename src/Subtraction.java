@@ -2,6 +2,10 @@
  * Created by zohrath on 2016-03-18.
  */
 public class Subtraction extends Binary {
+    public Subtraction(Sexpr sum, Sexpr term) {
+
+    }
+
     @Override
     String getName() {
         return null;
