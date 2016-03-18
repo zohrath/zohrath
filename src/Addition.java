@@ -2,6 +2,7 @@
  * Created by zohrath on 2016-03-18.
  */
 public class Addition extends Binary {
+
     @Override
     String getName() {
         return null;
@@ -9,6 +10,11 @@ public class Addition extends Binary {
 
     @Override
     Sexpr eval() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
         return null;
     }
 }
