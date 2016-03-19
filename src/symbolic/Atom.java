@@ -6,4 +6,9 @@ package symbolic;
 public abstract class Atom extends Sexpr {
 
     abstract public String toString();
+
+    @Override
+    String getName() {
+        return "Atom";
+    }
 }

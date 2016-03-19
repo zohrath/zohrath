@@ -11,6 +11,11 @@ public abstract class Unary extends Sexpr {
         return "(" + argument.toString() + ")";
     };
 
+    @Override
+    String getName() {
+        return "Unary";
+    }
+
     int priority() {
         return 0;
     }

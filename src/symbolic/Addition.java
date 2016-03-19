@@ -13,7 +13,7 @@ public class Addition extends Binary {
 
     @Override
     String getName() {
-        return null;
+        return "Addition";
     }
 
     @Override

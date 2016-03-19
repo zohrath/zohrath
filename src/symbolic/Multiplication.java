@@ -10,7 +10,7 @@ public class Multiplication extends Binary {
 
     @Override
     String getName() {
-        return null;
+        return "Multiplication";
     }
 
     @Override

@@ -6,7 +6,7 @@ package symbolic;
 public class Quit extends Command {
     @Override
     String getName() {
-        return null;
+        return "Quit";
     }
 
     @Override

@@ -7,5 +7,10 @@ public abstract class Binary extends Sexpr {
     Sexpr left;
     Sexpr right;
 
+    @Override
+    String getName() {
+        return "Binary";
+    }
+
     abstract public String toString();
 }

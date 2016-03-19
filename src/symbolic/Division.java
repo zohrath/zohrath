@@ -11,7 +11,7 @@ public class Division extends Binary {
 
     @Override
     String getName() {
-        return null;
+        return "Division";
     }
 
     @Override
