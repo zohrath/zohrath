@@ -62,6 +62,7 @@ class Parser {
 
         Sexpr sum = term();
 
+        st.nextToken();
         while (st.ttype == '+' || st.ttype == '-') {
             int operation = st.ttype;
             st.nextToken();
