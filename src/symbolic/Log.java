@@ -1,7 +1,9 @@
+package symbolic;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
-public class Exp extends Unary {
+public class Log extends Unary {
     @Override
     String getName() {
         return null;
@@ -9,6 +11,11 @@ public class Exp extends Unary {
 
     @Override
     Sexpr eval() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
         return null;
     }
 }

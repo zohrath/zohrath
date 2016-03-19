@@ -1,7 +1,6 @@
-*.class
-*.ilm
-.idea
 *.c
+.idea
+*iml
 *~
-#*
-*#
+out/
+*.class

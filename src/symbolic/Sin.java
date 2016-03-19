@@ -1,7 +1,9 @@
+package symbolic;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
-public class Quit extends Command {
+public class Sin extends Unary {
     @Override
     String getName() {
         return null;
@@ -9,6 +11,11 @@ public class Quit extends Command {
 
     @Override
     Sexpr eval() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
         return null;
     }
 }

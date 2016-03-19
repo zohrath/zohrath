@@ -1,19 +1,24 @@
+package symbolic;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
 public class Constant extends Atom {
-    protected double value;
+
+    private double value;
+
+    public Constant(double _value) {
+        this.value = _value;
+    }
 
     @Override
     public String toString() {
-        return "Constant{" +
-                "value=" + value +
-                '}';
+        return "(" + this.getValue() + ")";
     }
 
     @Override
     public double getValue() {
-        return value;
+        return this.value;
     }
 
     @Override
@@ -21,15 +26,8 @@ public class Constant extends Atom {
         return null;
     }
 
-    public Constant(double input) {
-        value = input;
-    }
-
     @Override
     Sexpr eval() {
         return null;
     }
-
-
 }
-

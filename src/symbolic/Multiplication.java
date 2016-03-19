@@ -1,13 +1,11 @@
+package symbolic;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
-public class Addition extends Binary {
+public class Multiplication extends Binary {
 
-
-    public Addition(Sexpr _left, Sexpr _right) {
-        this.left = _left;
-        this.right = _right;
-        this.eval();
+    public Multiplication(Sexpr prod, Sexpr factor) {
     }
 
     @Override
@@ -17,13 +15,11 @@ public class Addition extends Binary {
 
     @Override
     Sexpr eval() {
-        return this;
+        return null;
     }
-
 
     @Override
     public String toString() {
         return null;
     }
 }
-

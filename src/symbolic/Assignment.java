@@ -1,12 +1,9 @@
+package symbolic;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
-public class Division extends Binary {
-
-    public Division(Sexpr prod, Sexpr factor) {
-
-    }
-
+public class Assignment extends Binary {
     @Override
     String getName() {
         return null;
@@ -14,6 +11,11 @@ public class Division extends Binary {
 
     @Override
     Sexpr eval() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
         return null;
     }
 }

@@ -3,16 +3,11 @@
  */
 import java.io.StreamTokenizer;
 import java.io.IOException;
+import symbolic.Sexpr;
 
-class Parser{
+class Parser {
+
     StreamTokenizer st;
-
-    @Override
-    public String toString() {
-        return "Parser{" +
-                "st=" + st +
-                '}';
-    }
 
     public Parser(){
         st = new StreamTokenizer(System.in);
@@ -22,83 +17,117 @@ class Parser{
     }
 
     public Sexpr statement() {
-        return expression();
-    }
-    public Sexpr expression() {
-        Sexpr sum = null;
+
+        Sexpr s = null;
+
         try {
-            sum = term();
+            boolean eof = false;
+            do {
+                int token = st.nextToken();
+
+                if (st.ttype == st.TT_EOF) {
+                    eof = true;
+                } else {
+                    s = assignment();
+                }
+
+            } while (!eof);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        while (st.ttype=='+' || st.ttype=='-') {
+        return s;
+    }
+
+    private Sexpr command() {
+
+        // quit
+        // vars
+
+        return null;
+    }
+
+    public Sexpr assignment() throws IOException {
+
+        Sexpr a = expression();
+
+        // =
+        // identifier
+
+        return a;
+    }
+
+
+    public Sexpr expression() throws IOException {
+
+        Sexpr sum = term();
+
+        while (st.ttype == '+' || st.ttype == '-') {
             int operation = st.ttype;
-            try {
-                st.nextToken();
-            } catch (IOException e) {
-                e.printStackTrace();
+            st.nextToken();
+            if (operation == '+') {
+                sum = new symbolic.Addition(sum, term());
+            } else {
+                sum = new symbolic.Subtraction(sum, term());
             }
-            if (operation=='+')
-                try {
-                    sum = new Addition(sum, term());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            else
-                try {
-                    sum = new Subtraction(sum, term());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
         }
+
         return sum;
     }
 
-    private Sexpr term() throws IOException{
-        Sexpr prod = factor();
+    private Sexpr term() {
 
-        while (st.nextToken() == '*' || st.nextToken() == '/'){
-            int operation = st.ttype;
-            try {
-                st.nextToken();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            if (operation == '*') {
-                prod = new Multiplication(prod, factor());
-            }
-            else {
-                prod = new Division(prod, factor());
-            }
-        }
-        //st.pushBack();
-        return prod;
+        Sexpr t = factor();
+
+        // *
+        // /
+
+        return t;
     }
 
-    private Sexpr factor() throws IOException{
-        Sexpr result;
-        if(st.nextToken() != '('){
-            st.pushBack();
-            result = number();
-        }else{
-            result = expression();
-            if(st.nextToken() != ')'){
-                throw new SyntaxErrorException("expected ')'");
-            }
-        }
-        return result;
+    private Sexpr factor() {
+
+        return primary();
     }
 
-    private Sexpr number() throws IOException{
-        if(st.nextToken() != st.TT_NUMBER){
-            throw new SyntaxErrorException("Expected number");
-        }
+    private Sexpr primary() {
 
-        return new Constant(st.nval);
+        Sexpr p = null;
+
+        if (st.ttype == st.TT_NUMBER) {
+            p = number();
+        }
+            // ( -> assignment -> )
+            // unary
+            // identifier
+
+        return p;
+    }
+
+    private Sexpr unary() {
+
+        // negate (unary '-')
+        // exp
+        // log
+        // sin
+        // cos
+
+        return null;
+    }
+
+    private Sexpr number() {
+
+        return new symbolic.Constant(st.nval);
+    }
+
+    private Sexpr identifier() {
+
+        return null;
     }
 
 }
+
+
 
 class SyntaxErrorException extends RuntimeException{
     public SyntaxErrorException(){
