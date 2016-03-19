@@ -21,17 +21,18 @@ class Parser {
         Sexpr s = null;
 
         try {
-            boolean eof = false;
+
+
             do {
-                st.nextToken();
-
                 if (st.ttype == st.TT_EOF || st.ttype == st.TT_EOL) {
-                    eof = true;
-                } else {
-                    s = assignment();
+                    return s;
                 }
-
-            } while (!eof);
+                st.nextToken();
+                if (st.ttype == st.TT_EOF || st.ttype == st.TT_EOL) {
+                    return s;
+                }
+                    s = assignment();
+            } while (true);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -62,14 +63,12 @@ class Parser {
 
         Sexpr sum = term();
 
-        if (st.ttype != st.TT_EOF || st.ttype != st.TT_EOL) {
-            st.nextToken();
-        }
-        
+        st.nextToken();
+
         while (st.ttype == '+' || st.ttype == '-') {
             int operation = st.ttype;
             st.nextToken();
-            Sexpr tmp = null;
+            Sexpr tmp;
             if (operation == '+') {
                 tmp = new symbolic.Addition(sum, term());
             } else {
