@@ -66,11 +66,13 @@ class Parser {
         while (st.ttype == '+' || st.ttype == '-') {
             int operation = st.ttype;
             st.nextToken();
+            Sexpr tmp = null;
             if (operation == '+') {
-                sum = new symbolic.Addition(sum, term());
+                tmp = new symbolic.Addition(sum, term());
             } else {
-                sum = new symbolic.Subtraction(sum, term());
+                tmp = new symbolic.Subtraction(sum, term());
             }
+            sum = tmp;
         }
 
         return sum;

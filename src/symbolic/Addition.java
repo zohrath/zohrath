@@ -24,7 +24,7 @@ public class Addition extends Binary {
 
     @Override
     public String toString() {
-        return null;
+        return "(" + left.toString() + "+" + right.toString() + ")";
     }
 }
 
