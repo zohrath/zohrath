@@ -23,9 +23,9 @@ class Parser {
         try {
             boolean eof = false;
             do {
-                int token = st.nextToken();
+                st.nextToken();
 
-                if (st.ttype == st.TT_EOF) {
+                if (st.ttype == st.TT_EOF || st.ttype == st.TT_EOL) {
                     eof = true;
                 } else {
                     s = assignment();
