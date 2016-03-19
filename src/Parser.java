@@ -21,17 +21,17 @@ class Parser {
         Sexpr s = null;
 
         try {
-            boolean eof = false;
-            do {
-                st.nextToken();
 
-                if (st.ttype == st.TT_EOF || st.ttype == st.TT_EOL) {
-                    eof = true;
-                } else {
-                    s = assignment();
+            int token = st.nextToken();
+            st.pushBack();
+
+            if (token == st.TT_WORD) {
+                if (st.sval == "quit" || st.sval == "vars") {
+                    s = command();
                 }
-
-            } while (!eof);
+            } else {
+                s = assignment();
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -63,42 +63,50 @@ class Parser {
         Sexpr sum = term();
 
         st.nextToken();
-        while (st.ttype == '+' || st.ttype == '-') {
+        if (st.ttype == '+' || st.ttype == '-') {
+
             int operation = st.ttype;
-            st.nextToken();
-            Sexpr tmp = null;
+
             if (operation == '+') {
-                tmp = new symbolic.Addition(sum, term());
+                sum = new symbolic.Addition(sum, term());
             } else {
-                tmp = new symbolic.Subtraction(sum, term());
+                sum = new symbolic.Subtraction(sum, term());
             }
-            sum = tmp;
+        } else {
+            st.pushBack();
         }
 
         return sum;
     }
 
-    private Sexpr term() {
+    private Sexpr term() throws IOException {
 
         Sexpr t = factor();
 
-        // *
-        // /
+        st.nextToken();
+        if (st.nval == '*' || st.nval == '/') {
+
+        } else {
+            st.pushBack();
+        }
 
         return t;
     }
 
-    private Sexpr factor() {
+    private Sexpr factor() throws IOException {
 
         return primary();
     }
 
-    private Sexpr primary() {
+    private Sexpr primary() throws IOException {
 
         Sexpr p = null;
+        st.nextToken();
 
         if (st.ttype == st.TT_NUMBER) {
             p = number();
+        } else {
+            st.pushBack();
         }
             // ( -> assignment -> )
             // unary
