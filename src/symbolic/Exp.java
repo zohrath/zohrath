@@ -11,12 +11,12 @@ public class Exp extends Unary {
 
     @Override
     String getName() {
-        return "^";
+        return "Exp";
     }
 
     public Sexpr eval() {
         if (this.argument.getName() != "Constant") {
-            this.argument.eval();
+            this.argument = this.argument.eval();
         }
         if (this.argument.getName() == "Constant") {
             Constant a = new Constant(Math.exp(this.argument.getConstant()));

@@ -19,4 +19,8 @@ public class Negation extends Unary {
         return null;
     }
 
+    @Override
+    public String toString() {
+        return "(-" + argument + ")";
+    }
 }

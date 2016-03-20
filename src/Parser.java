@@ -122,13 +122,6 @@ class Parser {
             if (st.ttype == st.TT_NUMBER) {
                 p = number();
 
-                st.nextToken();
-                if (st.ttype == '^') {
-                    p = unary();
-                } else {
-                    st.pushBack();
-                }
-
             } else if (token == '(') {
 
                 try {
@@ -155,13 +148,13 @@ class Parser {
                     case "log":
                     case "sin":
                     case "cos":
-                        //Problem?
+                    case "exp":
                         p = unary();
                         break;
                     default:
                         p = identifier();
                 }
-            } else if (st.ttype == '^' || st.ttype == '-') {
+            } else if (st.ttype == '-') {
                 p = unary();
 
 
@@ -188,13 +181,12 @@ class Parser {
                 case "cos":
                     u = new symbolic.Cos(primary());
                     break;
+                case "exp":
+                    u = new symbolic.Exp(primary());
+                    break;
             }
         } else {
-            if (st.ttype == '^') {
-                u = new symbolic.Exp(primary());
-            } else if (st.ttype == '-') {
-                u = new symbolic.Negation(primary());
-            }
+            u = new symbolic.Negation(primary());
         }
 
         return u;
