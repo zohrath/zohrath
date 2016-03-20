@@ -1,3 +1,4 @@
+import symbolic.Binary;
 import symbolic.Sexpr;
 
 /**
@@ -12,5 +13,8 @@ public class Calculator {
         Sexpr e = p.statement();
 
         System.out.println("Echo: " + e);
+
+        e = e.eval();
+        System.out.print(e.getValue());
     }
 }
