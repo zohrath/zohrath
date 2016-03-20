@@ -5,12 +5,13 @@ package symbolic;
  */
 public class Multiplication extends Binary {
 
-    public Multiplication(Sexpr prod, Sexpr factor) {
+    public Multiplication(Sexpr _left, Sexpr _right) {
+        super(_left, _right);
     }
 
     @Override
     String getName() {
-        return null;
+        return "*";
     }
 
     @Override
@@ -18,8 +19,4 @@ public class Multiplication extends Binary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 }

@@ -5,13 +5,13 @@ package symbolic;
  */
 public class Division extends Binary {
 
-    public Division(Sexpr prod, Sexpr factor) {
-
+    public Division(Sexpr _left, Sexpr _right) {
+        super(_left, _right);
     }
 
     @Override
     String getName() {
-        return null;
+        return "/";
     }
 
     @Override
@@ -19,8 +19,4 @@ public class Division extends Binary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 }

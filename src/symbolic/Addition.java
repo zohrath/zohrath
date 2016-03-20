@@ -5,15 +5,13 @@ package symbolic;
  */
 public class Addition extends Binary {
 
-
     public Addition(Sexpr _left, Sexpr _right) {
-        this.left = _left;
-        this.right = _right;
+        super(_left, _right);
     }
 
     @Override
     String getName() {
-        return null;
+        return "+";
     }
 
     @Override
@@ -21,10 +19,4 @@ public class Addition extends Binary {
         return null;
     }
 
-
-    @Override
-    public String toString() {
-        return "(" + left.toString() + "+" + right.toString() + ")";
-    }
 }
-

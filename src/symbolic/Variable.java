@@ -13,9 +13,4 @@ public class Variable extends Atom {
     Sexpr eval() {
         return null;
     }
-
-    @Override
-    public String toString() {
-        return null;
-    }
 }

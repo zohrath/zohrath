@@ -5,5 +5,7 @@ package symbolic;
  */
 public abstract class Atom extends Sexpr {
 
-    abstract public String toString();
+    public String toString() {
+        return "(" + getValue() + ")";
+    }
 }

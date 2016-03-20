@@ -62,35 +62,44 @@ class Parser {
 
         Sexpr sum = term();
 
-        st.nextToken();
-        if (st.ttype == '+' || st.ttype == '-') {
+        while (true) {
+            st.nextToken();
+            if (st.ttype == '+' || st.ttype == '-') {
 
-            int operation = st.ttype;
+                int operation = st.ttype;
 
-            if (operation == '+') {
-                sum = new symbolic.Addition(sum, term());
+                if (operation == '+') {
+                    sum = new symbolic.Addition(sum, term());
+                } else {
+                    sum = new symbolic.Subtraction(sum, term());
+                }
             } else {
-                sum = new symbolic.Subtraction(sum, term());
+                st.pushBack();
+                return sum;
             }
-        } else {
-            st.pushBack();
         }
-
-        return sum;
     }
 
     private Sexpr term() throws IOException {
 
         Sexpr t = factor();
 
-        st.nextToken();
-        if (st.nval == '*' || st.nval == '/') {
+        while (true) {
+            st.nextToken();
+            if (st.ttype == '*' || st.ttype == '/') {
 
-        } else {
-            st.pushBack();
+                int operation = st.ttype;
+
+                if (operation == '*') {
+                    t = new symbolic.Multiplication(t, term());
+                } else {
+                    t = new symbolic.Division(t, term());
+                }
+            } else {
+                st.pushBack();
+                return t;
+            }
         }
-
-        return t;
     }
 
     private Sexpr factor() throws IOException {
@@ -105,10 +114,13 @@ class Parser {
 
         if (st.ttype == st.TT_NUMBER) {
             p = number();
+        } else if (st.ttype == st.TT_WORD) {
+            if ( st.sval == "(" ) {
+
+            }
         } else {
             st.pushBack();
         }
-            // ( -> assignment -> )
             // unary
             // identifier
 

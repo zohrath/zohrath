@@ -12,18 +12,13 @@ public class Constant extends Atom {
     }
 
     @Override
-    public String toString() {
-        return "(" + this.getValue() + ")";
-    }
-
-    @Override
     public double getValue() {
         return this.value;
     }
 
     @Override
     String getName() {
-        return null;
+        return String.valueOf(getValue());
     }
 
     @Override
