@@ -13,9 +13,15 @@ public class Cos extends Unary {
         return "Cos";
     }
 
-    @Override
     public Sexpr eval() {
-        return null;
+        if (this.argument.getName() != "Constant") {
+            this.argument.eval();
+        }
+        if (this.argument.getName() == "Constant") {
+            Constant a = new Constant(Math.cos(this.argument.getConstant()));
+            return a;
+        }
+        return this;
     }
 
     @Override

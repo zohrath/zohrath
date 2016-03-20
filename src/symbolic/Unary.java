@@ -6,6 +6,7 @@ package symbolic;
 public abstract class Unary extends Sexpr {
     Sexpr argument;
 
+
     public Unary(Sexpr _argument) {
         this.argument = argument;
     }
@@ -20,7 +21,11 @@ public abstract class Unary extends Sexpr {
         return "Unary";
     }
 
+
+
     int priority() {
         return 0;
     }
+
+
 }
