@@ -14,7 +14,7 @@ public class Log extends Unary {
     }
 
     @Override
-    Sexpr eval() {
+    public Sexpr eval() {
         return null;
     }
 

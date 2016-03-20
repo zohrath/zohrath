@@ -15,7 +15,7 @@ public class Negation extends Unary {
     }
 
     @Override
-    Sexpr eval() {
+    public Sexpr eval() {
         return null;
     }
 

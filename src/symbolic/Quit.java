@@ -10,7 +10,7 @@ public class Quit extends Command {
     }
 
     @Override
-    Sexpr eval() {
+    public Sexpr eval() {
         return null;
     }
 }

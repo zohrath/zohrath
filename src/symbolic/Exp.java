@@ -15,7 +15,7 @@ public class Exp extends Unary {
     }
 
     @Override
-    Sexpr eval() {
+    public Sexpr eval() {
         return null;
     }
 

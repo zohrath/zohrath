@@ -14,9 +14,5 @@ public class Addition extends Binary {
         return "+";
     }
 
-    @Override
-    Sexpr eval() {
-        return null;
-    }
 
 }
