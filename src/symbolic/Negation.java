@@ -16,7 +16,14 @@ public class Negation extends Unary {
 
     @Override
     public Sexpr eval() {
-        return null;
+        if (this.argument.getName() != "Constant") {
+            this.argument = this.argument.eval();
+        }
+        if (this.argument.getName() == "Constant") {
+            Constant a = new Constant(-1 * (this.argument.getConstant()));
+            return a;
+        }
+        return this;
     }
 
     @Override
