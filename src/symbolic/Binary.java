@@ -17,4 +17,15 @@ public abstract class Binary extends Sexpr {
     public String toString() {
         return "(" + this.left + " " + this.getName() + " " + this.right + ")";
     }
-}
+
+    Sexpr eval() {
+           if (left.getName() != "Constant") {
+                left.eval();
+                }
+            if (right.getName() != "Constant") {
+                right.eval();
+            }
+            return new Constant(left.getConstant() + right.getValue());
+    }
+
+    }

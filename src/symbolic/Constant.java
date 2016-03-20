@@ -18,11 +18,14 @@ public class Constant extends Atom {
 
     @Override
     String getName() {
-        return String.valueOf(getValue());
+        return "Constant";
     }
 
     @Override
     Sexpr eval() {
         return null;
     }
+
+    @Override
+    public double getConstant() { return this.value;}
 }
