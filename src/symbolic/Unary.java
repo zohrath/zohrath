@@ -6,6 +6,10 @@ package symbolic;
 public abstract class Unary extends Sexpr {
     Sexpr argument;
 
+    public Unary(Sexpr _argument) {
+        this.argument = argument;
+    }
+
     public String toString() {
 
         return "(" + argument.toString() + ")";

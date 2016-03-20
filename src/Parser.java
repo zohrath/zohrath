@@ -13,6 +13,8 @@ class Parser {
         st = new StreamTokenizer(System.in);
         st.ordinaryChar('-');
         st.ordinaryChar('/');
+        st.ordinaryChar('(');
+        st.ordinaryChar(')');
         st.eolIsSignificant(true);
     }
 
@@ -25,15 +27,18 @@ class Parser {
             int token = st.nextToken();
             st.pushBack();
 
-            if (token == st.TT_WORD) {
-                if (st.sval == "quit" || st.sval == "vars") {
+            if (st.sval == "quit" || st.sval == "vars") {
                     s = command();
-                }
+
             } else {
                 s = assignment();
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        if (s == null) {
+            throw new SyntaxErrorException();
         }
 
         return s;
@@ -110,14 +115,44 @@ class Parser {
     private Sexpr primary() throws IOException {
 
         Sexpr p = null;
-        st.nextToken();
+        int token = st.nextToken();
 
         if (st.ttype == st.TT_NUMBER) {
             p = number();
-        } else if (st.ttype == st.TT_WORD) {
-            if ( st.sval == "(" ) {
+        } else if (token == '(') {
 
+            try {
+                p = assignment();
+                p.addParenthesis();
+            } catch (NullPointerException e) {
+                throw new SyntaxErrorException("p == null");
             }
+
+            token = st.nextToken();
+
+            if (token != ')') {
+                throw new SyntaxErrorException();
+            }
+            p.subParenthesis();
+            if (p.getParenthesis() < 0) {
+                throw new SyntaxErrorException();
+            }
+
+            return p;
+
+        }   else if (st.ttype == st.TT_WORD) {
+                switch (st.sval) {
+                    case "exp":
+                    case "log":
+                    case "sin":
+                    case "cos":
+                    case "-": //Problem?
+                        p = unary();
+                        break;
+                    default:
+                        p = identifier();
+                }
+
         } else {
             st.pushBack();
         }
@@ -127,15 +162,28 @@ class Parser {
         return p;
     }
 
-    private Sexpr unary() {
+    private Sexpr unary() throws IOException {
 
-        // negate (unary '-')
-        // exp
-        // log
-        // sin
-        // cos
+        Sexpr u = null;
+        switch (st.sval){
+            case "exp":
+                u = new symbolic.Exp(assignment());
+                break;
+            case "log":
+                u = new symbolic.Log(assignment());
+                break;
+            case "sin":
+                u = new symbolic.Sin(assignment());
+                break;
+            case "cos":
+                u = new symbolic.Cos(assignment());
+                break;
+            case "-": //Problem?
+                u = new symbolic.Negation(assignment());
+                break;
+        }
 
-        return null;
+        return u;
     }
 
     private Sexpr number() {
@@ -145,7 +193,7 @@ class Parser {
 
     private Sexpr identifier() {
 
-        return null;
+        return new symbolic.Variable(st.sval);
     }
 
 }

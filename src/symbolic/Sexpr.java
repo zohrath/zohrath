@@ -5,7 +5,21 @@ package symbolic;
  */
 public abstract class Sexpr {
 
+    int parenthesis = 0;
+
     public Sexpr() {
+    }
+
+    public int getParenthesis() {
+        return parenthesis;
+    }
+
+    public void addParenthesis() {
+        this.parenthesis++;
+    }
+
+    public void subParenthesis() {
+        this.parenthesis--;
     }
 
     abstract String getName();
