@@ -18,8 +18,4 @@ public class Cos extends Unary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 }

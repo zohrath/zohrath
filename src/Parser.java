@@ -15,6 +15,7 @@ class Parser {
         st.ordinaryChar('/');
         st.ordinaryChar('(');
         st.ordinaryChar(')');
+        st.ordinaryChar('^');
         st.eolIsSignificant(true);
     }
 
@@ -114,73 +115,81 @@ class Parser {
 
     private Sexpr primary() throws IOException {
 
-        Sexpr p = null;
-        int token = st.nextToken();
+        while (true) {
+            Sexpr p = null;
+            int token = st.nextToken();
 
-        if (st.ttype == st.TT_NUMBER) {
-            p = number();
-        } else if (token == '(') {
+            if (st.ttype == st.TT_NUMBER) {
+                p = number();
+            } else if (token == '(') {
 
-            try {
-                p = assignment();
-                p.addParenthesis();
-            } catch (NullPointerException e) {
-                throw new SyntaxErrorException("p == null");
-            }
+                try {
+                    p = assignment();
+                    p.addParenthesis();
+                } catch (NullPointerException e) {
+                    throw new SyntaxErrorException("p == null");
+                }
 
-            token = st.nextToken();
+                token = st.nextToken();
 
-            if (token != ')') {
-                throw new SyntaxErrorException();
-            }
-            p.subParenthesis();
-            if (p.getParenthesis() < 0) {
-                throw new SyntaxErrorException();
-            }
+                if (token != ')') {
+                    throw new SyntaxErrorException();
+                }
+                p.subParenthesis();
+                if (p.getParenthesis() < 0) {
+                    throw new SyntaxErrorException();
+                }
 
-            return p;
+                return p;
 
-        }   else if (st.ttype == st.TT_WORD) {
+            } else if (st.ttype == st.TT_WORD) {
                 switch (st.sval) {
-                    case "exp":
                     case "log":
                     case "sin":
                     case "cos":
-                    case "-": //Problem?
+                        //Problem?
                         p = unary();
                         break;
                     default:
                         p = identifier();
                 }
+            } else if (st.ttype == '^' || st.ttype == '-') {
+                p = unary();
 
-        } else {
-            st.pushBack();
-        }
+
+            } else {
+                st.pushBack();
+            }
             // unary
             // identifier
 
-        return p;
+            return p;
+        }
     }
 
     private Sexpr unary() throws IOException {
 
         Sexpr u = null;
-        switch (st.sval){
-            case "exp":
-                u = new symbolic.Exp(assignment());
-                break;
+        if (st.ttype == st.TT_WORD){
+        switch (st.sval) {
             case "log":
-                u = new symbolic.Log(assignment());
+                u = new symbolic.Log(primary());
                 break;
             case "sin":
-                u = new symbolic.Sin(assignment());
+                u = new symbolic.Sin(primary());
                 break;
             case "cos":
-                u = new symbolic.Cos(assignment());
+                u = new symbolic.Cos(primary());
                 break;
-            case "-": //Problem?
-                u = new symbolic.Negation(assignment());
-                break;
+         }
+
+        }
+        else {
+            if (st.ttype == '^') {
+                u = new symbolic.Exp(primary());
+            } else if (st.ttype == '-') {
+                u = new symbolic.Negation(primary());
+            }
         }
 
         return u;

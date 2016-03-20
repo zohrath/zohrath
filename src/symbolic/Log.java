@@ -18,8 +18,5 @@ public class Log extends Unary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }

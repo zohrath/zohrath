@@ -11,7 +11,7 @@ public class Exp extends Unary {
 
     @Override
     String getName() {
-        return "Exp";
+        return "^";
     }
 
     @Override
@@ -19,8 +19,5 @@ public class Exp extends Unary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }
