@@ -8,18 +8,17 @@ public abstract class Unary extends Sexpr {
 
 
     public Unary(Sexpr _argument) {
-        this.argument = argument;
+        this.argument = _argument;
     }
-
-    public String toString() {
-
-        return "(" + argument.toString() + ")";
-    };
 
     @Override
-    String getName() {
-        return "Unary";
+    public String toString() {
+
+        return getName() + "(" + argument.toString() + ")";
     }
+
+    @Override
+    abstract String getName();
 
 
 

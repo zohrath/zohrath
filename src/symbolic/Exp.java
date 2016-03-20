@@ -11,7 +11,7 @@ public class Exp extends Unary {
 
     @Override
     String getName() {
-        return "Exp";
+        return "^";
     }
 
     public Sexpr eval() {
@@ -25,8 +25,5 @@ public class Exp extends Unary {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }
