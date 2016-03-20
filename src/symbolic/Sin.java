@@ -13,9 +13,15 @@ public class Sin extends Unary {
         return "Sin";
     }
 
-    @Override
     public Sexpr eval() {
-        return null;
+        if (this.argument.getName() != "Constant") {
+            this.argument.eval();
+        }
+        if (this.argument.getName() == "Constant") {
+            Constant a = new Constant(Math.sin(this.argument.getConstant()));
+            return a;
+        }
+        return this;
     }
 
 }
