@@ -6,7 +6,7 @@ package symbolic;
 public class Negation extends Unary {
     @Override
     String getName() {
-        return null;
+        return "Negation";
     }
 
     @Override

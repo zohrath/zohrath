@@ -6,7 +6,7 @@ package symbolic;
 public class Exp extends Unary {
     @Override
     String getName() {
-        return null;
+        return "Exp";
     }
 
     @Override

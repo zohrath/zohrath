@@ -6,7 +6,7 @@ package symbolic;
 public class Sin extends Unary {
     @Override
     String getName() {
-        return null;
+        return "Sin";
     }
 
     @Override

@@ -6,7 +6,7 @@ package symbolic;
 public class Variable extends Atom {
     @Override
     String getName() {
-        return null;
+        return "Variable";
     }
 
     @Override

@@ -6,7 +6,7 @@ package symbolic;
 public class Cos extends Unary {
     @Override
     String getName() {
-        return null;
+        return "Cos";
     }
 
     @Override

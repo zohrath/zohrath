@@ -6,7 +6,7 @@ package symbolic;
 public class Log extends Unary {
     @Override
     String getName() {
-        return null;
+        return "Log";
     }
 
     @Override

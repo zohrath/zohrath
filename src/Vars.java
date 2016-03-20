@@ -6,7 +6,7 @@ package symbolic;
 public class Vars extends Command {
     @Override
     String getName() {
-        return null;
+        return "Vars";
     }
 
     @Override

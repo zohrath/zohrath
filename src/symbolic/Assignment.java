@@ -10,7 +10,7 @@ public class Assignment extends Binary {
 
     @Override
     String getName() {
-        return null;
+        return "Assignment";
     }
 
     @Override
