@@ -1,5 +1,10 @@
+import sun.tools.java.SyntaxError;
 import symbolic.Binary;
 import symbolic.Sexpr;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by timsvensson on 19/03/16.
@@ -7,14 +12,36 @@ import symbolic.Sexpr;
 public class Calculator {
     public static void main(String[] args) {
 
-        Parser p = new Parser();
+        boolean run = true;
+        Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
 
-        System.out.print("? ");
-        Sexpr e = p.statement();
 
-        System.out.println("Echo: " + e);
+        while (run) {
+            try {
+                Parser p = new Parser();
+                System.out.print("? ");
+                Sexpr e = p.statement();
 
-        e = e.eval();
-        System.out.print(e.getValue());
+
+                if(e != null) {
+                    System.out.println("Echo: " + e);
+                    e = e.eval();
+                    System.out.println(e.getValue());
+                    variables.put("ans", e);
+                }
+            }
+            catch(QuitException e){
+                run = false;
+            }
+            catch (VarsException e){
+                System.out.println(variables.values());
+            }
+            catch(SyntaxErrorException e){
+                System.out.println("Syntax Error");
+            }
+            catch(IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 }

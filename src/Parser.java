@@ -19,24 +19,21 @@ class Parser {
         st.eolIsSignificant(true);
     }
 
-    public Sexpr statement() {
+    public Sexpr statement() throws IOException {
 
         Sexpr s = null;
 
-        try {
+
 
             int token = st.nextToken();
             st.pushBack();
 
             if (st.sval == "quit" || st.sval == "vars") {
-                    s = command();
+                command();
 
             } else {
                 s = assignment();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         if (s == null) {
             throw new SyntaxErrorException();
@@ -45,12 +42,14 @@ class Parser {
         return s;
     }
 
-    private Sexpr command() {
+    private void command() {
 
-        // quit
-        // vars
-
-        return null;
+        switch (st.sval) {
+            case "quit":
+                throw new QuitException();
+            case "vars":
+                throw new VarsException();
+        }
     }
 
     public Sexpr assignment() throws IOException {
@@ -62,7 +61,6 @@ class Parser {
 
         return a;
     }
-
 
     public Sexpr expression() throws IOException {
 
@@ -205,6 +203,13 @@ class Parser {
 }
 
 
+class QuitException extends RuntimeException {
+    public QuitException() { super(); }
+}
+
+class VarsException extends RuntimeException {
+    public VarsException() { super(); }
+}
 
 class SyntaxErrorException extends RuntimeException{
     public SyntaxErrorException(){
