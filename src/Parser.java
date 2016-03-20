@@ -121,6 +121,14 @@ class Parser {
 
             if (st.ttype == st.TT_NUMBER) {
                 p = number();
+
+                st.nextToken();
+                if (st.ttype == '^') {
+                    p = unary();
+                } else {
+                    st.pushBack();
+                }
+
             } else if (token == '(') {
 
                 try {
@@ -160,8 +168,6 @@ class Parser {
             } else {
                 st.pushBack();
             }
-            // unary
-            // identifier
 
             return p;
         }
@@ -170,21 +176,20 @@ class Parser {
     private Sexpr unary() throws IOException {
 
         Sexpr u = null;
-        if (st.ttype == st.TT_WORD){
-        switch (st.sval) {
-            case "log":
-                u = new symbolic.Log(primary());
-                break;
-            case "sin":
-                u = new symbolic.Sin(primary());
-                break;
-            case "cos":
-                u = new symbolic.Cos(primary());
-                break;
-         }
+        if (st.ttype == st.TT_WORD) {
 
-        }
-        else {
+            switch (st.sval) {
+                case "log":
+                    u = new symbolic.Log(primary());
+                    break;
+                case "sin":
+                    u = new symbolic.Sin(primary());
+                    break;
+                case "cos":
+                    u = new symbolic.Cos(primary());
+                    break;
+            }
+        } else {
             if (st.ttype == '^') {
                 u = new symbolic.Exp(primary());
             } else if (st.ttype == '-') {

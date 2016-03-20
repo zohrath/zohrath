@@ -11,7 +11,7 @@ public class Negation extends Unary {
 
     @Override
     String getName() {
-        return "Negation";
+        return "-";
     }
 
     @Override
@@ -19,8 +19,4 @@ public class Negation extends Unary {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 }
