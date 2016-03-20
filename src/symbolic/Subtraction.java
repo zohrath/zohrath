@@ -12,9 +12,4 @@ public class Subtraction extends Binary {
     String getName() {
         return "-";
     }
-
-    @Override
-    Sexpr eval() {
-        return null;
-    }
 }

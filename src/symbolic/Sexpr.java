@@ -10,7 +10,7 @@ public abstract class Sexpr {
 
     abstract String getName();
 
-    double getValue() {
+    public double getValue() {
         return 0;
     }
 
@@ -22,8 +22,10 @@ public abstract class Sexpr {
         return true;
     }
 
-    abstract Sexpr eval();
+    public abstract Sexpr eval();
 
-
+    public double getConstant() {
+        return this.getValue();
+    }
 
 }

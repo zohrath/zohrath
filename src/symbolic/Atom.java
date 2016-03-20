@@ -9,5 +9,5 @@ public abstract class Atom extends Sexpr {
         return String.valueOf(getValue());
     }
 
-    public double getConstant {return this.getValue();}
+
 }

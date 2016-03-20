@@ -14,9 +14,5 @@ public class Division extends Binary {
         return "/";
     }
 
-    @Override
-    Sexpr eval() {
-        return null;
-    }
 
 }

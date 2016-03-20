@@ -22,10 +22,11 @@ public class Constant extends Atom {
     }
 
     @Override
-    Sexpr eval() {
+    public Sexpr eval() {
         return null;
     }
 
-    @Override
-    public double getConstant() { return this.value;}
+    public double getConstant() {
+        return this.value;
+    }
 }

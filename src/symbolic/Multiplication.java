@@ -14,9 +14,6 @@ public class Multiplication extends Binary {
         return "*";
     }
 
-    @Override
-    Sexpr eval() {
-        return null;
-    }
+
 
 }
