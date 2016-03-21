@@ -3,14 +3,14 @@ import java.io.IOException;
 import symbolic.Sexpr;
 
 /**
- *
+ * Parser reads a string of text and outputs a tree of symbolic expressions representing the calculation.
  */
 class Parser {
 
     StreamTokenizer st;
 
     /**
-     *
+     * Constructor. Sets values for StreamTokenizer.
      */
     public Parser(){
         st = new StreamTokenizer(System.in);

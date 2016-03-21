@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by timsvensson on 19/03/16.
+ * Calculates the stream of tokens.
  */
 public class Calculator {
     public static void main(String[] args) {
