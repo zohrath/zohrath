@@ -15,7 +15,7 @@ public class Log extends Unary {
 
     public Sexpr eval() {
         if (this.argument.getName() != "Constant") {
-            this.argument.eval();
+            this.argument = this.argument.eval();
         }
         if (this.argument.getName() == "Constant") {
             Constant a = new Constant(Math.log(this.argument.getConstant()));
@@ -23,8 +23,5 @@ public class Log extends Unary {
         }
         return this;
     }
-    @Override
-    public String toString() {
-        return null;
-    }
+
 }

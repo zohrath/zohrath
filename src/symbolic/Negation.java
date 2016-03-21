@@ -11,16 +11,23 @@ public class Negation extends Unary {
 
     @Override
     String getName() {
-        return "Negation";
+        return "-";
     }
 
     @Override
     public Sexpr eval() {
-        return null;
+        if (this.argument.getName() != "Constant") {
+            this.argument = this.argument.eval();
+        }
+        if (this.argument.getName() == "Constant") {
+            Constant a = new Constant(-1 * (this.argument.getConstant()));
+            return a;
+        }
+        return this;
     }
 
     @Override
     public String toString() {
-        return null;
+        return "(-" + argument + ")";
     }
 }

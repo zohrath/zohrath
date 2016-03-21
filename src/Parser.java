@@ -15,27 +15,25 @@ class Parser {
         st.ordinaryChar('/');
         st.ordinaryChar('(');
         st.ordinaryChar(')');
+        st.ordinaryChar('^');
         st.eolIsSignificant(true);
     }
 
-    public Sexpr statement() {
+    public Sexpr statement() throws IOException {
 
         Sexpr s = null;
 
-        try {
+
 
             int token = st.nextToken();
             st.pushBack();
 
             if (st.sval == "quit" || st.sval == "vars") {
-                    s = command();
+                command();
 
             } else {
                 s = assignment();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
         if (s == null) {
             throw new SyntaxErrorException();
@@ -44,12 +42,14 @@ class Parser {
         return s;
     }
 
-    private Sexpr command() {
+    private void command() {
 
-        // quit
-        // vars
-
-        return null;
+        switch (st.sval) {
+            case "quit":
+                throw new QuitException();
+            case "vars":
+                throw new VarsException();
+        }
     }
 
     public Sexpr assignment() throws IOException {
@@ -61,7 +61,6 @@ class Parser {
 
         return a;
     }
-
 
     public Sexpr expression() throws IOException {
 
@@ -114,73 +113,78 @@ class Parser {
 
     private Sexpr primary() throws IOException {
 
-        Sexpr p = null;
-        int token = st.nextToken();
+        while (true) {
+            Sexpr p = null;
+            int token = st.nextToken();
 
-        if (st.ttype == st.TT_NUMBER) {
-            p = number();
-        } else if (token == '(') {
+            if (st.ttype == st.TT_NUMBER) {
+                p = number();
 
-            try {
-                p = assignment();
-                p.addParenthesis();
-            } catch (NullPointerException e) {
-                throw new SyntaxErrorException("p == null");
-            }
+            } else if (token == '(') {
 
-            token = st.nextToken();
+                try {
+                    p = assignment();
+                    p.addParenthesis();
+                } catch (NullPointerException e) {
+                    throw new SyntaxErrorException("p == null");
+                }
 
-            if (token != ')') {
-                throw new SyntaxErrorException();
-            }
-            p.subParenthesis();
-            if (p.getParenthesis() < 0) {
-                throw new SyntaxErrorException();
-            }
+                token = st.nextToken();
 
-            return p;
+                if (token != ')') {
+                    throw new SyntaxErrorException();
+                }
+                p.subParenthesis();
+                if (p.getParenthesis() < 0) {
+                    throw new SyntaxErrorException();
+                }
 
-        }   else if (st.ttype == st.TT_WORD) {
+                return p;
+
+            } else if (st.ttype == st.TT_WORD) {
                 switch (st.sval) {
-                    case "exp":
                     case "log":
                     case "sin":
                     case "cos":
-                    case "-": //Problem?
+                    case "exp":
                         p = unary();
                         break;
                     default:
                         p = identifier();
                 }
+            } else if (st.ttype == '-') {
+                p = unary();
 
-        } else {
-            st.pushBack();
+
+            } else {
+                st.pushBack();
+            }
+
+            return p;
         }
-            // unary
-            // identifier
-
-        return p;
     }
 
     private Sexpr unary() throws IOException {
 
         Sexpr u = null;
-        switch (st.sval){
-            case "exp":
-                u = new symbolic.Exp(assignment());
-                break;
-            case "log":
-                u = new symbolic.Log(assignment());
-                break;
-            case "sin":
-                u = new symbolic.Sin(assignment());
-                break;
-            case "cos":
-                u = new symbolic.Cos(assignment());
-                break;
-            case "-": //Problem?
-                u = new symbolic.Negation(assignment());
-                break;
+        if (st.ttype == st.TT_WORD) {
+
+            switch (st.sval) {
+                case "log":
+                    u = new symbolic.Log(primary());
+                    break;
+                case "sin":
+                    u = new symbolic.Sin(primary());
+                    break;
+                case "cos":
+                    u = new symbolic.Cos(primary());
+                    break;
+                case "exp":
+                    u = new symbolic.Exp(primary());
+                    break;
+            }
+        } else {
+            u = new symbolic.Negation(primary());
         }
 
         return u;
@@ -199,6 +203,13 @@ class Parser {
 }
 
 
+class QuitException extends RuntimeException {
+    public QuitException() { super(); }
+}
+
+class VarsException extends RuntimeException {
+    public VarsException() { super(); }
+}
 
 class SyntaxErrorException extends RuntimeException{
     public SyntaxErrorException(){

@@ -15,7 +15,7 @@ public class Sin extends Unary {
 
     public Sexpr eval() {
         if (this.argument.getName() != "Constant") {
-            this.argument.eval();
+            this.argument = this.argument.eval();
         }
         if (this.argument.getName() == "Constant") {
             Constant a = new Constant(Math.sin(this.argument.getConstant()));
@@ -24,8 +24,4 @@ public class Sin extends Unary {
         return this;
     }
 
-    @Override
-    public String toString() {
-        return null;
-    }
 }

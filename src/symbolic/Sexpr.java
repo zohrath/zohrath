@@ -24,9 +24,7 @@ public abstract class Sexpr {
 
     abstract String getName();
 
-    public double getValue() {
-        return 0;
-    }
+    public double getValue() {return 0;}
 
     int priority() {
        return 0;
