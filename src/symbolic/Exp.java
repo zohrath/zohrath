@@ -14,16 +14,8 @@ public class Exp extends Unary {
         return "Exp";
     }
 
-    public Sexpr eval() {
-        if (this.argument.getName() != "Constant") {
-            this.argument = this.argument.eval();
-        }
-        if (this.argument.getName() == "Constant") {
-            Constant a = new Constant(Math.exp(this.argument.getConstant()));
-            return a;
-        }
-        return this;
+    @Override
+    double getResult(double a) {
+        return Math.exp(a);
     }
-
-
 }

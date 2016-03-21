@@ -20,11 +20,16 @@ public abstract class Unary extends Sexpr {
     @Override
     abstract public String getName();
 
-
-
-    int priority() {
-        return 0;
+    public Sexpr eval() {
+        if (this.argument.getName() != "Constant") {
+            this.argument = this.argument.eval();
+        }
+        if (this.argument.getName() == "Constant") {
+            Constant a = new Constant(getResult(this.argument.getValue()));
+            return a;
+        }
+        return this;
     }
 
-
+    abstract double getResult(double a);
 }

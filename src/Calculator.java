@@ -1,5 +1,4 @@
 import symbolic.Sexpr;
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +18,6 @@ public class Calculator {
                 Parser p = new Parser();
                 System.out.print("? ");
                 Sexpr e = p.statement();
-
-
 
                 if (e.isQuit()) {
                     System.out.println("Goodbye");

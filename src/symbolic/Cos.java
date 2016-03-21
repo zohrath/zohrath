@@ -13,15 +13,8 @@ public class Cos extends Unary {
         return "Cos";
     }
 
-    public Sexpr eval() {
-        if (this.argument.getName() != "Constant") {
-            this.argument = this.argument.eval();
-        }
-        if (this.argument.getName() == "Constant") {
-            Constant a = new Constant(Math.cos(this.argument.getConstant()));
-            return a;
-        }
-        return this;
+    @Override
+    public double getResult(double a) {
+        return Math.cos(a);
     }
-
 }

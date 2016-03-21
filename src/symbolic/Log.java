@@ -13,15 +13,10 @@ public class Log extends Unary {
         return "Log";
     }
 
-    public Sexpr eval() {
-        if (this.argument.getName() != "Constant") {
-            this.argument = this.argument.eval();
-        }
-        if (this.argument.getName() == "Constant") {
-            Constant a = new Constant(Math.log(this.argument.getConstant()));
-            return a;
-        }
-        return this;
+    @Override
+    double getResult(double a) {
+        return  Math.log(a);
     }
+
 
 }
