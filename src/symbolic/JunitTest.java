@@ -8,9 +8,14 @@ import static org.junit.Assert.assertEquals;
 public class JunitTest {
 
         @org.junit.Test
-        public static void main() throws Exception {
+        public void main() throws Exception {
+
+            //Constant.java
             ConstantTest testConst = new ConstantTest();
             testConst.getName();
+            testConst.getConstant();
+
+            //
         }
 
 
