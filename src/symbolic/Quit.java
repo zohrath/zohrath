@@ -14,9 +14,4 @@ public class Quit extends Command {
     public String getName() {
         return "Quit";
     }
-
-    @Override
-    public Sexpr eval() {
-        return new Constant(1337);
-    }
 }

@@ -23,11 +23,6 @@ public abstract class Unary extends Sexpr {
     abstract public String getName();
 
     @Override
-    public Sexpr eval() {
-        return null;
-    }
-
-    @Override
     public Sexpr eval(Map<String,Sexpr> variables) {
         if (argument.isVariable()) {
             argument.eval(variables);

@@ -15,7 +15,7 @@ public class Log extends Unary {
 
     @Override
     double getResult(double a) {
-        return  Math.log(a);
+        return Math.log(a);
     }
 
 

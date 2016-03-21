@@ -14,9 +14,4 @@ public class Vars extends Command {
     public String getName() {
         return "Vars";
     }
-
-    @Override
-    public Sexpr eval() {
-        return new Constant(1337);
-    }
 }

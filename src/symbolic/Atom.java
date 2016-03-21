@@ -12,12 +12,7 @@ public abstract class Atom extends Sexpr {
     }
 
     @Override
-    public Sexpr eval() {
-        return this;
-    }
-
-    @Override
     public Sexpr eval(Map<String,Sexpr> variables) {
-        return eval();
+        return this;
     }
 }
