@@ -9,7 +9,7 @@ public class Sin extends Unary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Sin";
     }
 

@@ -18,7 +18,7 @@ public abstract class Unary extends Sexpr {
     }
 
     @Override
-    abstract String getName();
+    abstract public String getName();
 
 
 

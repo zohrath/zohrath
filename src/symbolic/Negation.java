@@ -10,7 +10,7 @@ public class Negation extends Unary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "-";
     }
 

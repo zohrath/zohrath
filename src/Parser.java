@@ -16,7 +16,7 @@ class Parser {
         st.ordinaryChar('(');
         st.ordinaryChar(')');
         st.ordinaryChar('^');
-        //st.lowerCaseMode(true);
+        st.lowerCaseMode(true);
         st.eolIsSignificant(true);
     }
 
@@ -48,10 +48,22 @@ class Parser {
 
         Sexpr a = expression();
 
-        // =
-        // identifier
+        while (true) {
+            st.nextToken();
+            if (st.ttype == '=') {
 
-        return a;
+                st.nextToken();
+                if (st.ttype == st.TT_WORD) {
+                    return new symbolic.Assignment(a, identifier());
+                } else {
+                    throw new SyntaxErrorException("Not identifier.");
+                }
+
+            } else {
+                st.pushBack();
+            }
+            return a;
+        }
     }
 
     public Sexpr expression() throws IOException {

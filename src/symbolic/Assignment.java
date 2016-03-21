@@ -6,20 +6,21 @@ package symbolic;
 public class Assignment extends Binary {
     public Assignment(Sexpr _left, Sexpr _right) {
         super(_left, _right);
+        this.assignment = true;
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Assignment";
     }
 
     @Override
     public Sexpr eval() {
-        return null;
+        return new Constant(1337);
     }
 
     @Override
     public String toString() {
-        return null;
+        return this.left + " = " + this.right;
     }
 }

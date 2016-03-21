@@ -13,6 +13,7 @@ public class Calculator {
         boolean run = true;
         Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
 
+
         while (run) {
             try {
                 Parser p = new Parser();
@@ -24,6 +25,8 @@ public class Calculator {
                     return;
                 } else if (e.isVars()) {
                     System.out.println(variables);
+                } else if (e.isAssignment()) {
+
                 } else {
                     System.out.println("Echo: " + e);
                     e = e.eval();

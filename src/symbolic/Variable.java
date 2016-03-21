@@ -22,7 +22,7 @@ public class Variable extends Atom {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Variable";
     }
 

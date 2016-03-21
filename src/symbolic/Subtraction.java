@@ -9,7 +9,7 @@ public class Subtraction extends Binary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "-";
     }
 

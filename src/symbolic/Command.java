@@ -5,7 +5,7 @@ package symbolic;
  */
 public abstract class Command extends Sexpr {
     @Override
-    String getName() {
+    public String getName() {
         return "Command";
     }
 }

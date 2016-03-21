@@ -7,15 +7,16 @@ public abstract class Sexpr {
 
     boolean quit = false;
     boolean vars = false;
+    boolean assignment = false;
 
     public Sexpr() {
 
     }
 
-    abstract String getName();
+    abstract public String getName();
 
-    public void setQuit() {
-        this.quit = true;
+    public boolean isAssignment() {
+        return assignment;
     }
 
     public boolean isQuit() {

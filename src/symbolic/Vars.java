@@ -11,7 +11,7 @@ public class Vars extends Command {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Vars";
     }
 
