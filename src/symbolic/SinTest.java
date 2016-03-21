@@ -19,7 +19,7 @@ public class SinTest {
 
     @Test
     public void eval() throws Exception {
-        assertEquals(Math.sin(1337),sin.eval().getConstant(),0.1);
+        assertEquals(Math.sin(1337),sin.eval().getValue(),0.1);
     }
 
     @Test

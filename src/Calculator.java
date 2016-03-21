@@ -11,7 +11,7 @@ public class Calculator {
 
         boolean run = true;
         Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
-
+        variables.put("ans", new symbolic.Constant(0));
 
         while (run) {
             try {
@@ -24,13 +24,10 @@ public class Calculator {
                     return;
                 } else if (e.isVars()) {
                     System.out.println(variables);
-                } else if (e.isAssignment()) {
-                    variables.put(e.getName(), e.eval());
-                    System.out.println(variables);
                 } else {
                     System.out.println("Echo: " + e);
-                    e = e.eval();
-                    System.out.println(e.getValue());
+                    e = e.eval(variables);
+                    System.out.println(e);
                     variables.put("ans", e);
                 }
             } catch(SyntaxErrorException e) {

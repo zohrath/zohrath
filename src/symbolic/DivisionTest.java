@@ -20,7 +20,7 @@ public class DivisionTest {
     //testa med variabler
     @Test
     public void eval() throws Exception {
-        assertEquals(133.7,div.eval().getConstant(),0.1);
+        assertEquals(133.7,div.eval().getValue(),0.1);
     }
 
     @Test

@@ -18,7 +18,7 @@ public class AdditionTest {
     @Test
     public void eval() throws Exception {
 
-        assertEquals((double)4,add.eval().getConstant(),(double)0);
+        assertEquals((double)4,add.eval().getValue(),(double)0);
 
     }
 

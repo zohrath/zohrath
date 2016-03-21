@@ -1,11 +1,13 @@
 package symbolic;
 
+import java.util.Map;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
 public class Variable extends Atom {
 
-    private String varName;
+    String varName;
 
     public Variable(String variable) {
         super();
@@ -24,8 +26,13 @@ public class Variable extends Atom {
     }
 
     @Override
-    public Sexpr eval() {
-        return new Constant(1337);
-    }
+    public Sexpr eval(Map<String,Sexpr> variables){
+        Sexpr val = variables.get(getName());
 
+        if (val == null) {
+            return this;
+        } else {
+            return val;
+        }
+    }
 }

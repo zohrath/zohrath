@@ -1,19 +1,15 @@
 package symbolic;
 
+import java.util.Map;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
 public class Constant extends Atom {
 
-    private double value;
-
     public Constant(double _value) {
         this.value = _value;
-    }
-
-    @Override
-    public double getValue() {
-        return this.value;
+        this.constant = true;
     }
 
     @Override
@@ -21,12 +17,7 @@ public class Constant extends Atom {
         return "Constant";
     }
 
-    @Override
-    public Sexpr eval() {
-        return this;
-    }
-
-    public double getConstant() {
+    public double getValue() {
         return this.value;
     }
 }

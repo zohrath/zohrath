@@ -1,5 +1,7 @@
 package symbolic;
 
+import java.util.Map;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
@@ -14,17 +16,24 @@ public abstract class Binary extends Sexpr {
 
     abstract public String getName();
 
+    @Override
     public Sexpr eval() {
-        if (left.getName() != "Constant") {
-            this.left = this.left.eval();
-        }
-        if (right.getName() != "Constant") {
-            this.right = this.right.eval();
-        }
-        Constant a = new Constant(getResult(left.getConstant(), right.getConstant()));
-
-        return a;
+        return new Constant(420); // blazzzze it
     }
+
+    @Override
+    public Sexpr eval(Map<String,Sexpr> variables) {
+
+        this.left = this.left.eval(variables);
+        this.right = this.right.eval(variables);
+
+        if (left.isConstant() && right.isConstant()) {
+            return new Constant(getResult(left.getValue(), right.getValue()));
+        }
+
+        return this;
+        }
+
 
     abstract public double getResult(double a, double b);
 

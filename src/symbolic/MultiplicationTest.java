@@ -21,11 +21,11 @@ public class MultiplicationTest {
     //Testa med variabler
     @Test
     public void eval() throws Exception {
-        assertEquals(13370, mult.eval().getConstant(),0);
+        assertEquals(13370, mult.eval().getValue(),0);
     }
 
     @Test
     public void getResult() throws Exception {
-        assertEquals(13370, mult.getResult(conupp.getConstant(),conner.getConstant()),0);
+        assertEquals(13370, mult.getResult(conupp.getValue(),conner.getValue()),0);
     }
 }

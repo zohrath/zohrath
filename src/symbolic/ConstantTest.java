@@ -32,6 +32,6 @@ public class ConstantTest {
 
     @org.junit.Test
     public void getConstant() throws Exception {
-        assertEquals((double)5,con.getConstant(),(double)0.1);
+        assertEquals((double)5,con.getValue(),(double)0.1);
     }
 }

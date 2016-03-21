@@ -1,5 +1,7 @@
 package symbolic;
 
+import java.util.Map;
+
 /**
  * Created by zohrath on 2016-03-18.
  */
@@ -20,8 +22,14 @@ public class Assignment extends Binary {
     }
 
     @Override
+    public Sexpr eval(Map<String,Sexpr> variables) {
+        variables.put(getName(), this.left.eval(variables));
+        return this.left.eval(variables);
+    }
+
+    @Override
     public String toString() {
-        return this.left + " = " + this.right;
+        return "(" + this.left + " = " + this.right + ")";
     }
 
     @Override

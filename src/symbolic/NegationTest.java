@@ -23,7 +23,7 @@ public class NegationTest {
 
     @Test
     public void eval() throws Exception {
-        assertEquals(-1337,neg.eval().getConstant(),0);
+        assertEquals(-1337,neg.eval().getValue(),0);
     }
 
     @Test

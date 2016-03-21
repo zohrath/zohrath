@@ -46,24 +46,29 @@ class Parser {
 
     public Sexpr assignment() throws IOException {
 
+        boolean run = true;
         Sexpr a = expression();
 
-        while (true) {
+        while (run) {
+
+
             st.nextToken();
             if (st.ttype == '=') {
 
                 st.nextToken();
                 if (st.ttype == st.TT_WORD) {
-                    return new symbolic.Assignment(a, identifier());
+                    a = new symbolic.Assignment(a, identifier());
                 } else {
                     throw new SyntaxErrorException("Not identifier.");
                 }
 
             } else {
                 st.pushBack();
+                run = false;
             }
-            return a;
         }
+
+        return a;
     }
 
     public Sexpr expression() throws IOException {
