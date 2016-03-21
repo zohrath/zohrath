@@ -5,6 +5,9 @@ package symbolic;
 import org.junit.Test;
 import symbolic.Negation;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
@@ -12,10 +15,11 @@ import static org.junit.Assert.*;
  */
 public class NegationTest {
 
-
+    Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
     Constant con = new Constant(1337);
     Negation neg = new Negation(con);
-
+    Variable var = new Variable("a");
+    Negation neg2 = new Negation(var);
     @Test
     public void getName() {
         assertEquals(neg.getName(),"-");
@@ -23,7 +27,8 @@ public class NegationTest {
 
     @Test
     public void eval() throws Exception {
-        assertEquals(-1337,neg.eval().getValue(),0);
+        assertEquals(-1337,neg.eval(variables).getValue(),0);
+        assertEquals(neg2,neg2.eval(variables));
     }
 
     @Test

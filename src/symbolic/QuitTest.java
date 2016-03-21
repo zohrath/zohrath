@@ -9,9 +9,11 @@ import static org.junit.Assert.*;
  */
 public class QuitTest {
 
+    Quit quit = new Quit();
+
     @Test
     public void getName() throws Exception {
-
+        assertEquals("Quit", quit.getName());
     }
 
     @Test
