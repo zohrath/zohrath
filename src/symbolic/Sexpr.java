@@ -5,24 +5,26 @@ package symbolic;
  */
 public abstract class Sexpr {
 
-    int parenthesis = 0;
+    boolean quit = false;
+    boolean vars = false;
 
     public Sexpr() {
-    }
 
-    public int getParenthesis() {
-        return parenthesis;
-    }
-
-    public void addParenthesis() {
-        this.parenthesis++;
-    }
-
-    public void subParenthesis() {
-        this.parenthesis--;
     }
 
     abstract String getName();
+
+    public void setQuit() {
+        this.quit = true;
+    }
+
+    public boolean isQuit() {
+        return this.quit;
+    }
+
+    public boolean isVars() {
+        return this.vars;
+    }
 
     public double getValue() {return 0;}
 

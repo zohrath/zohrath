@@ -16,39 +16,31 @@ class Parser {
         st.ordinaryChar('(');
         st.ordinaryChar(')');
         st.ordinaryChar('^');
+        //st.lowerCaseMode(true);
         st.eolIsSignificant(true);
     }
 
     public Sexpr statement() throws IOException {
 
-        Sexpr s = null;
-
-
-
-            int token = st.nextToken();
+            st.nextToken();
             st.pushBack();
 
-            if (st.sval == "quit" || st.sval == "vars") {
-                command();
-
-            } else {
-                s = assignment();
+        if (st.ttype == st.TT_WORD) {
+            if (st.sval.equals("quit") || st.sval.equals("vars")) {
+                return command();
             }
-
-        if (s == null) {
-            throw new SyntaxErrorException();
         }
-
-        return s;
+        return assignment();
     }
 
-    private void command() {
+    private Sexpr command() {
 
-        switch (st.sval) {
-            case "quit":
-                throw new QuitException();
-            case "vars":
-                throw new VarsException();
+        if (st.sval.equals("quit")) {
+            return new symbolic.Quit();
+        } else if (st.sval.equals("vars")) {
+            return new symbolic.Vars();
+        } else {
+            throw new SyntaxErrorException();
         }
     }
 
@@ -116,50 +108,35 @@ class Parser {
         while (true) {
             Sexpr p = null;
             int token = st.nextToken();
-
             if (st.ttype == st.TT_NUMBER) {
                 p = number();
-
             } else if (token == '(') {
 
                 try {
                     p = assignment();
-                    p.addParenthesis();
                 } catch (NullPointerException e) {
                     throw new SyntaxErrorException("p == null");
                 }
-
                 token = st.nextToken();
-
                 if (token != ')') {
-                    throw new SyntaxErrorException();
+                    throw new SyntaxErrorException("Too few ')");
                 }
-                p.subParenthesis();
-                if (p.getParenthesis() < 0) {
-                    throw new SyntaxErrorException();
-                }
-
                 return p;
 
             } else if (st.ttype == st.TT_WORD) {
-                switch (st.sval) {
-                    case "log":
-                    case "sin":
-                    case "cos":
-                    case "exp":
-                        p = unary();
-                        break;
-                    default:
-                        p = identifier();
+
+                if (st.sval.equals("log") || st.sval.equals("sin") || st.sval.equals("cos") || st.sval.equals("exp")) {
+                    p = unary();
+                } else {
+                    p = identifier();
                 }
             } else if (st.ttype == '-') {
                 p = unary();
-
-
+            } else if (st.ttype == ')') {
+                throw new SyntaxErrorException("Too many ')");
             } else {
                 st.pushBack();
             }
-
             return p;
         }
     }
@@ -203,13 +180,6 @@ class Parser {
 }
 
 
-class QuitException extends RuntimeException {
-    public QuitException() { super(); }
-}
-
-class VarsException extends RuntimeException {
-    public VarsException() { super(); }
-}
 
 class SyntaxErrorException extends RuntimeException{
     public SyntaxErrorException(){

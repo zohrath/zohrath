@@ -28,7 +28,7 @@ public class Variable extends Atom {
 
     @Override
     public Sexpr eval() {
-        return null;
+        return new Constant(1337);
     }
 
 }

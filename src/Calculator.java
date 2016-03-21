@@ -15,31 +15,26 @@ public class Calculator {
         boolean run = true;
         Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
 
-
         while (run) {
             try {
                 Parser p = new Parser();
                 System.out.print("? ");
                 Sexpr e = p.statement();
 
-
-                if(e != null) {
+                if (e.isQuit()) {
+                    System.out.println("Goodbye");
+                    return;
+                } else if (e.isVars()) {
+                    System.out.println(variables);
+                } else {
                     System.out.println("Echo: " + e);
                     e = e.eval();
                     System.out.println(e.getValue());
                     variables.put("ans", e);
                 }
-            }
-            catch(QuitException e){
-                run = false;
-            }
-            catch (VarsException e){
-                System.out.println(variables.values());
-            }
-            catch(SyntaxErrorException e){
-                System.out.println("Syntax Error");
-            }
-            catch(IOException e){
+            } catch(SyntaxErrorException e) {
+                System.out.println(e);
+            } catch(IOException e) {
                 e.printStackTrace();
             }
         }
