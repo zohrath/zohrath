@@ -32,7 +32,7 @@ public abstract class Unary extends Sexpr {
         if (argument.isVariable()) {
             argument.eval(variables);
         } else {
-            return new Constant(getResult(this.argument.getValue()));
+            return new Constant(getResult(this.argument.eval(variables).getValue()));
         }
         return this;
     }

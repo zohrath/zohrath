@@ -3,7 +3,9 @@ package symbolic;
 import java.util.Map;
 
 /**
- * Created by zohrath on 2016-03-18.
+ * A symbolic expression.
+ *
+ * @author zohrath on 2016-03-18.
  */
 public abstract class Sexpr {
 
