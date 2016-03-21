@@ -2,13 +2,16 @@ package symbolic;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by edvin on 3/20/16.
  */
 public class SinTest {
-
+    Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
     Constant con =  new Constant(1337);
     Sin sin = new Sin(con);
 
@@ -19,7 +22,7 @@ public class SinTest {
 
     @Test
     public void eval() throws Exception {
-        assertEquals(Math.sin(1337),sin.eval().getValue(),0.1);
+        assertEquals(Math.sin(1337),sin.eval(variables).getValue(),0.1);
     }
 
     @Test

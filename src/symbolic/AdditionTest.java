@@ -2,12 +2,16 @@ package symbolic;
 
 import org.junit.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
  * Created by edvin on 3/20/16.
  */
 public class AdditionTest {
+        Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
         Constant con = new Constant(2);
         Addition add = new Addition(con,con);
     @Test
@@ -18,7 +22,7 @@ public class AdditionTest {
     @Test
     public void eval() throws Exception {
 
-        assertEquals((double)4,add.eval().getValue(),(double)0);
+        assertEquals((double)4,add.eval(variables).getValue(),(double)0);
 
     }
 
