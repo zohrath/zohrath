@@ -6,6 +6,7 @@ package symbolic;
 public class Assignment extends Binary {
     public Assignment(Sexpr _left, Sexpr _right) {
         super(_left, _right);
+        this.assignment = true;
     }
 
     @Override

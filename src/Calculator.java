@@ -25,6 +25,8 @@ public class Calculator {
                     return;
                 } else if (e.isVars()) {
                     System.out.println(variables);
+                } else if (e.isAssignment()) {
+
                 } else {
                     System.out.println("Echo: " + e);
                     e = e.eval();
