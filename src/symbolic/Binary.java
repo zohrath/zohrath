@@ -12,7 +12,7 @@ public abstract class Binary extends Sexpr {
         this.right = _right;
     }
 
-    abstract String getName();
+    abstract public String getName();
 
     public String toString() {
         return "(" + this.left + " " + this.getName() + " " + this.right + ")";

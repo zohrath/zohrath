@@ -15,6 +15,7 @@ public class Calculator {
         boolean run = true;
         Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
 
+
         while (run) {
             try {
                 Parser p = new Parser();

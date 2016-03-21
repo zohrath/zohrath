@@ -12,7 +12,7 @@ public abstract class Sexpr {
 
     }
 
-    abstract String getName();
+    abstract public String getName();
 
     public void setQuit() {
         this.quit = true;

@@ -9,7 +9,7 @@ public class Log extends Unary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Log";
     }
 

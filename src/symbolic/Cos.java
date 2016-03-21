@@ -9,7 +9,7 @@ public class Cos extends Unary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Cos";
     }
 

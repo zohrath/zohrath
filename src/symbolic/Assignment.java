@@ -9,17 +9,17 @@ public class Assignment extends Binary {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Assignment";
     }
 
     @Override
     public Sexpr eval() {
-        return null;
+        return new Constant(1337);
     }
 
     @Override
     public String toString() {
-        return null;
+        return this.left + " = " + this.right;
     }
 }

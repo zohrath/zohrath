@@ -11,7 +11,7 @@ public class Quit extends Command {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Quit";
     }
 

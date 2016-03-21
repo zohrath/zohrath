@@ -17,7 +17,7 @@ public class Constant extends Atom {
     }
 
     @Override
-    String getName() {
+    public String getName() {
         return "Constant";
     }
 
