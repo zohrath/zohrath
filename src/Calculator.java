@@ -1,5 +1,3 @@
-import sun.tools.java.SyntaxError;
-import symbolic.Binary;
 import symbolic.Sexpr;
 
 import java.io.IOException;
