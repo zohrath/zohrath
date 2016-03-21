@@ -15,6 +15,8 @@ public class DivisionTest {
     Constant conupp = new Constant(1337);
     Constant conner = new Constant(10);
     Division div = new Division(conupp,conner);
+    Variable var = new Variable("a");
+    Division div2 = new Division(var,conner);
 
     @Test
     public void getName() throws Exception {
@@ -24,6 +26,7 @@ public class DivisionTest {
     @Test
     public void eval() throws Exception {
         assertEquals(133.7,div.eval(variables).getValue(),0.1);
+        assertEquals("(a / 10.0)",div2.eval(variables).toString());
     }
 
     @Test

@@ -3,6 +3,9 @@ package symbolic;
 import org.junit.Assert;
 import symbolic.Constant;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 /**
@@ -12,6 +15,7 @@ public class ConstantTest {
 
     Constant con = new Constant(5);
 
+    Map<String,Sexpr> variables = new HashMap<String,Sexpr>();
 
     @org.junit.Test
     public void getValue() throws Exception {
@@ -27,7 +31,7 @@ public class ConstantTest {
     //används inte
     @org.junit.Test
     public void eval() throws Exception {
-        assertEquals(con,con.eval());
+        assertEquals(con,con.eval(variables));
     }
 
     @org.junit.Test

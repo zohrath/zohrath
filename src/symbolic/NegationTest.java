@@ -28,7 +28,7 @@ public class NegationTest {
     @Test
     public void eval() throws Exception {
         assertEquals(-1337,neg.eval(variables).getValue(),0);
-        assertEquals(neg2,neg2.eval(variables));
+        assertEquals("(-a)",neg2.eval(variables).toString());
     }
 
     @Test

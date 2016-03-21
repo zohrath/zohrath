@@ -24,7 +24,7 @@ public class CosTest {
     @Test
     public void eval() throws Exception{
         assertEquals(Math.cos(1337),cos.eval(variables).getValue(),0.1);
-        assertEquals(cos2,cos2.eval(variables));
+        assertEquals("Cos(a)",cos2.eval(variables).toString());
     }
     @Test
     public void getResult() throws Exception {

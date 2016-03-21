@@ -26,7 +26,7 @@ public class SubtractionTest {
     @Test
     public void eval() throws Exception {
         assertEquals(1000,sub.eval(variables).getValue(),0);
-        assertEquals(sub2,sub2.eval(variables));
+        assertEquals("(a - 1337.0)",sub2.eval(variables).toString());
     }
 
     @Test

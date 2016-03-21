@@ -26,9 +26,8 @@ public class LogTest {
     @Test
     public void eval() throws Exception {
         assertEquals(Math.log(1337),log.eval(variables).getValue(),0);
-        Sexpr e = log2.eval();
-        String s = e.toString();
-        assertEquals("Log(d)",e.toString());
+
+        assertEquals("Log(d)",log2.eval(variables).toString());
     }
 
     @Test

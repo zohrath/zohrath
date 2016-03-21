@@ -16,6 +16,8 @@ public class MultiplicationTest {
     Constant conupp = new Constant(1337);
     Constant conner = new Constant(10);
     Multiplication mult = new Multiplication(conupp,conner);
+    Variable var = new Variable("a");
+    Multiplication mult2 = new Multiplication(conner,var);
 
     @Test
     public void getName() throws Exception {
@@ -25,6 +27,7 @@ public class MultiplicationTest {
     @Test
     public void eval() throws Exception {
         assertEquals(13370, mult.eval(variables).getValue(),0);
+        assertEquals("(10.0 * a)",mult2.eval(variables).toString());
     }
 
     @Test
