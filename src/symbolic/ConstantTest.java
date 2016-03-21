@@ -20,7 +20,6 @@ public class ConstantTest {
 
     @org.junit.Test
     public void getName() throws Exception {
-        System.out.println(con.getName());
         assertEquals("Constant", con.getName());
     }
 
@@ -33,7 +32,6 @@ public class ConstantTest {
 
     @org.junit.Test
     public void getConstant() throws Exception {
-        System.out.println(con.getConstant());
-        assertEquals(5,con.getConstant());
+        assertEquals((double)5,con.getConstant(),(double)0.1);
     }
 }
