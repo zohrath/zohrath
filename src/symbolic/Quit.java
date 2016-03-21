@@ -7,7 +7,7 @@ public class Quit extends Command {
 
     public Quit() {
         super();
-        setQuit();
+        this.quit = true;
     }
 
     @Override

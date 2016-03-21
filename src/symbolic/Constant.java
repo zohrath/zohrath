@@ -23,7 +23,7 @@ public class Constant extends Atom {
 
     @Override
     public Sexpr eval() {
-        return new Constant(1337.1333333333333333333333337);
+        return this;
     }
 
     public double getConstant() {

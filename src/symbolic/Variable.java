@@ -5,25 +5,22 @@ package symbolic;
  */
 public class Variable extends Atom {
 
-    private String variable;
+    private String varName;
 
     public Variable(String variable) {
         super();
-        this.variable = variable;
-    }
-
-    public String getVariable() {
-        return variable;
+        this.varName = variable;
+        this.variable = true;
     }
 
     @Override
     public String toString() {
-        return variable;
+        return varName;
     }
 
     @Override
     public String getName() {
-        return "Variable";
+        return varName;
     }
 
     @Override

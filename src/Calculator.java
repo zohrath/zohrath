@@ -20,13 +20,16 @@ public class Calculator {
                 System.out.print("? ");
                 Sexpr e = p.statement();
 
+
+
                 if (e.isQuit()) {
                     System.out.println("Goodbye");
                     return;
                 } else if (e.isVars()) {
                     System.out.println(variables);
                 } else if (e.isAssignment()) {
-
+                    variables.put(e.getName(), e.eval());
+                    System.out.println(variables);
                 } else {
                     System.out.println("Echo: " + e);
                     e = e.eval();

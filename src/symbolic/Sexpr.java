@@ -8,6 +8,7 @@ public abstract class Sexpr {
     boolean quit = false;
     boolean vars = false;
     boolean assignment = false;
+    boolean variable = false;
 
     public Sexpr() {
 
@@ -26,6 +27,8 @@ public abstract class Sexpr {
     public boolean isVars() {
         return this.vars;
     }
+
+    public boolean isVariable() { return this.variable; }
 
     public double getValue() {return 0;}
 

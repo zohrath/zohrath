@@ -11,16 +11,21 @@ public class Assignment extends Binary {
 
     @Override
     public String getName() {
-        return "Assignment";
+        return this.right.getName();
     }
 
     @Override
     public Sexpr eval() {
-        return new Constant(1337);
+        return this.left.eval();
     }
 
     @Override
     public String toString() {
         return this.left + " = " + this.right;
+    }
+
+    @Override
+    public double getResult(double a, double b) {
+        return 0;
     }
 }
