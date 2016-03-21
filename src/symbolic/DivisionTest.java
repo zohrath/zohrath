@@ -17,7 +17,7 @@ public class DivisionTest {
     public void getName() throws Exception {
         assertEquals("/",div.getName());
     }
-
+    //testa med variabler
     @Test
     public void eval() throws Exception {
         assertEquals(133.7,div.eval().getConstant(),0.1);

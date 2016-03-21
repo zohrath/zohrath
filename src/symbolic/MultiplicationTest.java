@@ -9,18 +9,23 @@ import static org.junit.Assert.*;
  */
 public class MultiplicationTest {
 
+
+    Constant conupp = new Constant(1337);
+    Constant conner = new Constant(10);
+    Multiplication mult = new Multiplication(conupp,conner);
+
     @Test
     public void getName() throws Exception {
-
+        assertEquals("*",mult.getName());
     }
-
+    //Testa med variabler
     @Test
     public void eval() throws Exception {
-
+        assertEquals(13370, mult.eval().getConstant(),0);
     }
 
     @Test
     public void getResult() throws Exception {
-
+        assertEquals(13370, mult.getResult(conupp.getConstant(),conner.getConstant()),0);
     }
 }

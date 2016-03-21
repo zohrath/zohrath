@@ -27,7 +27,7 @@ public class ConstantTest {
     //används inte
     @org.junit.Test
     public void eval() throws Exception {
-
+        assertEquals(con,con.eval());
     }
 
     @org.junit.Test

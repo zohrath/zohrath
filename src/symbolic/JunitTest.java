@@ -19,6 +19,7 @@ public class JunitTest {
             //Constant.java
             ConstantTest testConst = new ConstantTest();
             testConst.getName();
+            testConst.eval();
             testConst.getConstant();
 
             //Division.java
@@ -27,6 +28,23 @@ public class JunitTest {
             testDiv.eval();
             testDiv.getResult();
 
+            //Multiplication.java
+            MultiplicationTest testMult = new MultiplicationTest();
+            testMult.getName();
+            testMult.eval();
+            testMult.getResult();
+
+            //Negation.java
+            NegationTest testNeg    = new NegationTest();
+            testNeg.getName();
+            testNeg.eval();
+            testNeg.getResult();
+
+            //Sin.java
+            SinTest testSin = new SinTest();
+            testSin.getName();
+            testSin.eval();
+            testSin.getResult();
         }
 
 
