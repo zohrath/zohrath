@@ -17,11 +17,6 @@ public abstract class Binary extends Sexpr {
     abstract public String getName();
 
     @Override
-    public Sexpr eval() {
-        return new Constant(420); // blazzzze it
-    }
-
-    @Override
     public Sexpr eval(Map<String,Sexpr> variables) {
 
         this.left = this.left.eval(variables);

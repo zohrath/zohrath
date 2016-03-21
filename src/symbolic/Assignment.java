@@ -17,11 +17,6 @@ public class Assignment extends Binary {
     }
 
     @Override
-    public Sexpr eval() {
-        return this.left.eval();
-    }
-
-    @Override
     public Sexpr eval(Map<String,Sexpr> variables) {
         variables.put(getName(), this.left.eval(variables));
         return this.left.eval(variables);

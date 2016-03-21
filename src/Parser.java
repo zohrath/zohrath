@@ -1,14 +1,17 @@
-/**
- * Created by zohrath on 2016-03-18.
- */
 import java.io.StreamTokenizer;
 import java.io.IOException;
 import symbolic.Sexpr;
 
+/**
+ *
+ */
 class Parser {
 
     StreamTokenizer st;
 
+    /**
+     *
+     */
     public Parser(){
         st = new StreamTokenizer(System.in);
         st.ordinaryChar('-');
@@ -20,6 +23,11 @@ class Parser {
         st.eolIsSignificant(true);
     }
 
+    /**
+     * Creates a tree of symbolic expressions.
+     * @return A tree of of symbolic expressions.
+     * @throws IOException
+     */
     public Sexpr statement() throws IOException {
 
             st.nextToken();
@@ -33,6 +41,10 @@ class Parser {
         return assignment();
     }
 
+    /**
+     * Creates a node containing either the "quit" or the "vars" command
+     * @return A Sexpr-node.
+     */
     private Sexpr command() {
 
         if (st.sval.equals("quit")) {
@@ -44,14 +56,17 @@ class Parser {
         }
     }
 
+    /**
+     * Creates a node for assigning a variable a value.
+     * @return a node for assigning values to variables.
+     * @throws IOException
+     */
     public Sexpr assignment() throws IOException {
 
         boolean run = true;
         Sexpr a = expression();
 
         while (run) {
-
-
             st.nextToken();
             if (st.ttype == '=') {
 
@@ -71,6 +86,11 @@ class Parser {
         return a;
     }
 
+    /**
+     * Creates an addition or subtraction node
+     * @return a node corresponding to its type
+     * @throws IOException
+     */
     public Sexpr expression() throws IOException {
 
         Sexpr sum = term();
@@ -93,6 +113,11 @@ class Parser {
         }
     }
 
+    /**
+     * Creates a new node with either multiplication or division
+     * @return a new node with multiplication or division
+     * @throws IOException
+     */
     private Sexpr term() throws IOException {
 
         Sexpr t = factor();
@@ -115,11 +140,21 @@ class Parser {
         }
     }
 
+    /**
+     * Returns value from primary to term.
+     * @return primary
+     * @throws IOException
+     */
     private Sexpr factor() throws IOException {
 
         return primary();
     }
 
+    /**
+     * Checks if the symbol is a number, a parenthesis or a unary operand.
+     * @return a node corresponding to its type otherwise returns null.
+     * @throws IOException
+     */
     private Sexpr primary() throws IOException {
 
         while (true) {
@@ -158,6 +193,11 @@ class Parser {
         }
     }
 
+    /**
+     * Creates a new node with either log, sin, cos and exp.
+     * @return a new node with either log, sin, cos and exp.
+     * @throws IOException
+     */
     private Sexpr unary() throws IOException {
 
         Sexpr u = null;
@@ -184,11 +224,19 @@ class Parser {
         return u;
     }
 
+    /**
+     * Creats a new node with a result of symbolic.Constant();
+     * @return new node of a constant
+     */
     private Sexpr number() {
 
         return new symbolic.Constant(st.nval);
     }
 
+    /**
+     * Creats a new node with a result of symbolic.Variable()
+     * @return new node of a variable
+     */
     private Sexpr identifier() {
 
         return new symbolic.Variable(st.sval);
